@@ -3,7 +3,7 @@ import BooBash from '@/components/BooBash.vue'
 </script>
 
 <template>
-    <main>
+    <main class="absolute inset-0 w-full h-full bg-red-400">
         <BooBash />
     </main>
 </template>
