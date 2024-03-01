@@ -9,6 +9,7 @@ export type Position = {
 const show = ref<boolean>(false)
 const left = ref<number>(0)
 const top = ref<number>(0)
+const hitText = '+1 👻'
 
 const hit = (position: Position) => {
     left.value = position.x
@@ -32,5 +33,5 @@ defineExpose({ hit })
             left: left + 'px',
             top: top + 'px',
         }"
-    >+1 👻</span>
+    >{{ hitText }}</span>
 </template>
