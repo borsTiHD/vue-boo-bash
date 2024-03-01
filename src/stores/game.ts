@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import BackgroundMusic from '@/assets/Ghost_House_Orchestral_Cover.mp3'
 import type { Ghost } from '@/types/Ghost'
+import type { GameSettings } from '@/types/GameSettings'
 
 export const useGameStore = defineStore('game', () => {
     // States
@@ -19,9 +20,18 @@ export const useGameStore = defineStore('game', () => {
     const ghosts = ref<Ghost[]>([])
 
     // Constants
-    const maxGameTime = 30 // Time in seconds for each game
-    const maxGhosts = 10 // Max number of ghosts
-    const spawnDuration = 1000 * 2 // in milliseconds
+    const maxGameTime = ref(30) // Time in seconds for each game
+    const maxGhosts = ref(10) // Max number of ghosts
+    const spawnDuration = ref(1000 * 2) // in milliseconds
 
-    return { timer, running, gameOver, score, highScore, maxGameTime, gameTime, ghosts, maxGhosts, spawnDuration, music }
+    // Change settings
+    function setSettings(settings: Partial<GameSettings>) {
+        maxGameTime.value = settings.maxGameTime || maxGameTime.value
+        maxGhosts.value = settings.maxGhosts || maxGhosts.value
+        spawnDuration.value = settings.spawnDuration || spawnDuration.value
+        music.src = settings.music || music.src
+    }
+
+    return { timer, running, gameOver, score, highScore, maxGameTime,
+        gameTime, ghosts, maxGhosts, spawnDuration, music, setSettings }
 })

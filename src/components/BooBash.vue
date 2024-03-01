@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import SingleGhost from '@/components/SingleGhost.vue'
 import ScoreBoard from '@/components/ScoreBoard.vue'
 import GameOver from '@/components/GameOver.vue'
@@ -8,9 +8,14 @@ import useGameReset from '@/composables/game-reset'
 import { useGameStore } from '@/stores/game'
 import { useWindowStore } from '@/stores/window'
 import type { Ghost } from '@/types/Ghost'
+import type { GameSettings } from '@/types/GameSettings'
 
 // TODO: Game over sound
 // TODO: Custom cursor
+
+const props = defineProps<{
+    settings?: Partial<GameSettings>
+}>()
 
 // Game boundaries
 const ghostContainer = ref<HTMLElement | null>(null)
@@ -57,9 +62,22 @@ const setSizes = () => {
     })
 }
 
+// Deep watch for settings
+watch(() => props.settings, (settings) => {
+    if (settings) {
+        gameStore.setSettings(settings)
+    }
+}, { deep: true })
+
+// On mounted, set sizes, reset the game and set settings if provided
 onMounted(() => {
     // Set initial sizes
     setSizes()
+
+    // Set settings if provided
+    if (props.settings) {
+        gameStore.setSettings(props.settings)
+    }
 
     // Reset the game
     useGameReset()
