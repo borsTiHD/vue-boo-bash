@@ -376,7 +376,7 @@ startMoving()
     <HitMarker ref="hitMarkerRef" />
     <img
         :src="image"
-        class="absolute transition-all ease-in-out select-none"
+        class="absolute transition-all ease-in-out select-none drop-shadow-lg"
         :class="{
             'transform -scale-x-100': facing === 'right',
             // Only if the ghost is moving
