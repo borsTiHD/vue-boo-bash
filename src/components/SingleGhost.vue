@@ -383,7 +383,7 @@ startMoving()
             // makes him visible on hover
             // show crosshair cursor
             // and add duration to the transition for smooth movement
-            'cursor-crosshair duration-300 hover:opacity-100': !invincible && interval
+            'cursor-crosshair duration-300 hover:!opacity-100': !invincible && interval
         }"
         :style="{
             left: left + 'px',
