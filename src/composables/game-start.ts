@@ -3,7 +3,7 @@ import useGameReset from '@/composables/game-reset'
 import useGameOver from '@/composables/game-over'
 import useAddingGhost from '@/composables/adding-ghost'
 
-export default function useGameStart() {
+export default function useGameStart(callback?: () => void) {
     const gameStore = useGameStore()
 
     // Reset game
@@ -19,8 +19,12 @@ export default function useGameStart() {
     gameStore.timer = setInterval(() => {
         gameStore.gameTime-- // Decrease game time
 
+        // Game Over: Time's up
         if (gameStore.gameTime <= 0) {
             useGameOver()
+            if (callback) {
+                callback()
+            }
         }
     }, 1000)
 

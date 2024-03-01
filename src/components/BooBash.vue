@@ -24,7 +24,8 @@ const hit = (ghost: Ghost) => {
     // If the game is not running,
     // hitting the first ghost will start the game
     if (!gameStore.running) {
-        useGameStart()
+        useGameStart(gameOver)
+        emit('newGame')
     }
 
     // Increase the score
@@ -32,6 +33,17 @@ const hit = (ghost: Ghost) => {
         gameStore.score++
     }
 }
+
+// Game over: emit event
+const gameOver = () => {
+    emit('gameOver', {
+        score: gameStore.score,
+        highScore: gameStore.highScore
+    })
+}
+
+// Emit events
+const emit = defineEmits(['newGame', 'gameOver'])
 
 // Set container sizes
 const setSizes = () => {
@@ -66,7 +78,7 @@ onBeforeUnmount(() => {
     <div
         ref="ghostContainer"
         class="absolute inset-0 flex justify-center w-full h-full transition-all ease-in-out overflow-hidden z-40"
-        :class="{ 'bg-black/50': gameStore.running }"
+        :class="{ 'bg-black/50': gameStore.running, 'bg-black/20': gameStore.gameOver }"
     >
         <ScoreBoard />
         <GameOver />
