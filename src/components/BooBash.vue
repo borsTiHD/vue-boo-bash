@@ -8,6 +8,7 @@ import useAddingGhost from '@/composables/useAddingGhost'
 import { useGameStore } from '@/stores/game'
 import { useWindowStore } from '@/stores/window'
 import BackgroundMusic from '@/assets/Ghost_House_Orchestral_Cover.mp3'
+import type { Ghost } from '@/types/Ghost'
 
 // TODO: Game over sound
 // TODO: Custom cursor
@@ -27,7 +28,6 @@ audio.src = BackgroundMusic // Set the source of your MP3 file
 const gameStart = () => {
     // Reset the game
     useGameReset()
-    gameStore.ghosts = []
 
     // Set the game to running state and reset the game time
     gameStore.running = true
@@ -87,7 +87,7 @@ const gameOver = (timer: ReturnType<typeof setInterval>) => {
 }
 
 // Ghost hit
-const hit = () => {
+const hit = (ghost: Ghost) => {
     // If the game is not running,
     // hitting the first ghost will start the game
     if (!gameStore.running) {
@@ -95,18 +95,17 @@ const hit = () => {
     }
 
     // Increase the score
-    gameStore.score++
+    if (gameStore.running && ghost) {
+        gameStore.score++
+    }
 }
 
 // Set container sizes
 const setSizes = () => {
     windowStore.width = ghostContainer.value?.clientWidth ?? 0
     windowStore.height = ghostContainer.value?.clientHeight ?? 0
-}
 
-// Set new sizes and update the ghosts boundaries
-const setNewSizes = () => {
-    setSizes()
+    // Set new boundaries for all ghosts
     gameStore.ghosts.forEach((ghost) => {
         ghost.containerWidth = windowStore.width
         ghost.containerHeight = windowStore.height
@@ -121,7 +120,7 @@ onMounted(() => {
     useGameReset()
 
     // On window resize, set sizes
-    window.addEventListener('resize', setNewSizes)
+    window.addEventListener('resize', setSizes)
 })
 </script>
 
@@ -147,7 +146,7 @@ onMounted(() => {
                 ghost: ghost.ghost,
                 debug: ghost.debug
             }"
-            @hit="hit"
+            @hit="hit(ghost)"
         />
     </div>
 </template>
