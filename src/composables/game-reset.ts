@@ -1,5 +1,5 @@
 import { useGameStore } from '@/stores/game'
-import useAddingGhost from '@/composables/useAddingGhost'
+import useAddingGhost from '@/composables/adding-ghost'
 
 export default function useGameReset() {
     const gameStore = useGameStore()

@@ -3,8 +3,8 @@ import { ref, onMounted } from 'vue'
 import SingleGhost from '@/components/SingleGhost.vue'
 import ScoreBoard from '@/components/ScoreBoard.vue'
 import GameOver from '@/components/GameOver.vue'
-import useGameReset from '@/composables/useGameReset'
-import useAddingGhost from '@/composables/useAddingGhost'
+import useGameReset from '@/composables/game-reset'
+import useAddingGhost from '@/composables/adding-ghost'
 import { useGameStore } from '@/stores/game'
 import { useWindowStore } from '@/stores/window'
 import BackgroundMusic from '@/assets/Ghost_House_Orchestral_Cover.mp3'
@@ -150,3 +150,5 @@ onMounted(() => {
         />
     </div>
 </template>
+@/composables/adding-ghost
+@/composables/game-reset
