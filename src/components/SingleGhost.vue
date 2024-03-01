@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, defineExpose, ref, watch, computed } from 'vue'
+import { ref, watch, computed } from 'vue'
 
 import ghost1 from '@/assets/img/ghosts/ghost1.png'
 import ghost2 from '@/assets/img/ghosts/ghost2.png'
