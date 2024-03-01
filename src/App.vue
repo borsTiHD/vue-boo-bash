@@ -1,10 +1,10 @@
 <script setup lang="ts">
-
+import BooBash from '@/components/BooBash.vue'
 </script>
 
 <template>
     <main>
-        <span class="text-3xl font-bold underline p-4 bg-red-400">Hello World</span>
+        <BooBash />
     </main>
 </template>
 
