@@ -6,15 +6,13 @@ import type { GameSettings } from '@/types/GameSettings'
 
 export const useGameStore = defineStore('game', () => {
     // States
+    const debug = ref<boolean>(false) // Debug mode
     const timer = ref<ReturnType<typeof setInterval> | null>(null) // Timer on running game
     const gameTime = ref<number>(0) // Current game time in seconds
     const running = ref<boolean>(false) // Game is running
     const gameOver = ref<boolean>(false) // Show game over screen
     const score = ref<number>(0)
     const highScore = ref<number>(0)
-
-    // Background music
-    const music = new Audio(BackgroundMusic)
 
     // Ghosts
     const ghosts = ref<Ghost[]>([])
@@ -24,14 +22,24 @@ export const useGameStore = defineStore('game', () => {
     const maxGhosts = ref(10) // Max number of ghosts
     const spawnDuration = ref(1000 * 2) // in milliseconds
 
+    // Background music
+    const music = new Audio(BackgroundMusic)
+
+    // Rewind music when it ends
+    music.addEventListener('ended', () => {
+        music.currentTime = 0
+        music.play()
+    })
+
     // Change settings
     function setSettings(settings: Partial<GameSettings>) {
         maxGameTime.value = settings.maxGameTime || maxGameTime.value
         maxGhosts.value = settings.maxGhosts || maxGhosts.value
         spawnDuration.value = settings.spawnDuration || spawnDuration.value
         music.src = settings.music || music.src
+        debug.value = settings.debug || false
     }
 
-    return { timer, running, gameOver, score, highScore, maxGameTime,
+    return { debug, timer, running, gameOver, score, highScore, maxGameTime,
         gameTime, ghosts, maxGhosts, spawnDuration, music, setSettings }
 })

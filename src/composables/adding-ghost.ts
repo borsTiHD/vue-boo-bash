@@ -19,6 +19,6 @@ export default function useAddingGhost(partialGhost?: Partial<Ghost>) {
         speed: partialGhost?.speed || undefined,
         duration: partialGhost?.duration || 30,
         ghost: partialGhost?.ghost || undefined,
-        debug: partialGhost?.debug || false
+        debug: partialGhost?.debug || gameStore.debug || false
     })
 }

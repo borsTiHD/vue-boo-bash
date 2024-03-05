@@ -3,4 +3,5 @@ export type GameSettings = {
     maxGhosts: number
     spawnDuration: number
     music: string
+    debug?: boolean
 }
