@@ -95,8 +95,8 @@ onBeforeUnmount(() => {
 <template>
     <div
         ref="ghostContainer"
-        class="absolute inset-0 flex justify-center w-full h-full transition-all ease-in-out overflow-hidden z-40"
-        :class="{ 'bg-black/50': gameStore.running, 'bg-black/20': gameStore.gameOver }"
+        class="container-position container-transition-all global-font"
+        :class="{ 'background-black-50': gameStore.running, 'background-black-20': gameStore.gameOver }"
     >
         <ScoreBoard />
         <GameOver />
@@ -118,3 +118,37 @@ onBeforeUnmount(() => {
         />
     </div>
 </template>
+
+<style scoped>
+.container-position {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 40;
+}
+
+.container-transition-all {
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.background-black-50 {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.background-black-20 {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.global-font {
+    font-family: 'Roboto', sans-serif;
+}
+</style>

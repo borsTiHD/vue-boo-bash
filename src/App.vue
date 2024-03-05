@@ -24,10 +24,18 @@ const gameOver = (event: { score: number; highScore: number }) => {
 </script>
 
 <template>
-    <main class="absolute inset-0 w-full h-full bg-red-400">
+    <main class="main-background">
         <BooBash :settings="settings" @new-game="newGame" @game-over="gameOver" />
     </main>
 </template>
 
 <style scoped>
+.main-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #f87171;
+}
 </style>

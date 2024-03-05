@@ -28,10 +28,42 @@ defineExpose({ hit })
 <template>
     <span
         v-if="show"
-        class="absolute animate-bounce bg-black/50 text-white p-2 shadow-lg rounded-md select-none pointer-events-none"
+        class="hit-position hit-animate hit-select"
         :style="{
             left: left + 'px',
             top: top + 'px',
         }"
     >{{ hitText }}</span>
 </template>
+
+<style scoped>
+.hit-position {
+    position: absolute;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+.hit-select {
+    user-select: none;
+    pointer-events: none;
+}
+
+.hit-animate {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+</style>

@@ -376,14 +376,13 @@ startMoving()
     <HitMarker ref="hitMarkerRef" />
     <img
         :src="image"
-        class="absolute transition-all ease-in-out select-none drop-shadow-lg"
+        class="ghost-position ghost-style ghost-transition ghost-select"
         :class="{
-            'transform -scale-x-100': facing === 'right',
+            'ghost-transform-right': facing === 'right',
             // Only if the ghost is moving
             // makes him visible on hover
             // show crosshair cursor
-            // and add duration to the transition for smooth movement
-            'cursor-crosshair duration-300 hover:!opacity-100': !invincible && interval
+            'ghost-crosshair ghost-opacity-hover': !invincible && interval
         }"
         :style="{
             left: left + 'px',
@@ -397,10 +396,49 @@ startMoving()
     <!-- Small box to show the ghost position for debugging -->
     <div
         v-if="debug"
-        class="bg-red-500 p-2 absolute select-none rounded"
+        class="ghost-debug ghost-select"
         :style="{
             left: left + 'px',
             top: top + 'px',
         }"
     />
 </template>
+
+<style scoped>
+.ghost-position {
+    position: absolute;
+}
+
+.ghost-style {
+    filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+}
+
+.ghost-transition {
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.ghost-transform-right {
+    transform: scaleX(-1);
+}
+
+.ghost-select {
+    user-select: none;
+}
+
+.ghost-opacity-hover:hover {
+    opacity: 1 !important;
+}
+
+.ghost-crosshair {
+    cursor: crosshair;
+}
+
+.ghost-debug {
+    position: absolute;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #dc2626;
+}
+</style>
