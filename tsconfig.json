@@ -10,9 +10,5 @@
         {
             "path": "./tsconfig.vitest.json"
         }
-    ],
-    "exclude": ["src/App.vue", "src/main.ts"],
-    "compilerOptions": {
-        "outDir": "dist"
-    }
+    ]
 }
