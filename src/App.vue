@@ -26,7 +26,27 @@ const gameOver = (event: { score: number; highScore: number }) => {
 
 <template>
     <main class="main-background">
-        <BooBash :settings="settings" @new-game="newGame" @game-over="gameOver" />
+        <BooBash :settings="settings" @new-game="newGame" @game-over="gameOver">
+            <!-- Scoreboard slot is optional -->
+            <!-- <template #scoreboard="{ score, time, running }">
+                <div v-if="running" class="scoreboard">
+                    <h1>Scoreboard</h1>
+                    <p>Your score: {{ score }}</p>
+                    <p>Time left: {{ time }}</p>
+                </div>
+            </template> -->
+
+            <!-- Game Over slot is optional -->
+            <!-- <template #gameOver="{ score, highScore, show, closeGameOver }">
+                <div v-if="show" class="scoreboard">
+                    <h1>Game Over</h1>
+                    <p>Your score: {{ score }}</p>
+                    <p>High Score: {{ highScore }}</p>
+
+                    <button @click="closeGameOver">Close</button>
+                </div>
+            </template> -->
+        </BooBash>
     </main>
 </template>
 
@@ -38,5 +58,24 @@ const gameOver = (event: { score: number; highScore: number }) => {
     bottom: 0;
     left: 0;
     background-color: #f87171;
+}
+
+.scoreboard {
+    position: relative;
+    margin-top: 2rem;
+    margin-bottom: auto;
+    padding: 1rem;
+    color: #4a5568;
+    font-size: 1.5rem;
+    text-align: right;
+
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 </style>

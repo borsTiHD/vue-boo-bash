@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch, useSlots } from 'vue'
 import SingleGhost from '@/components/SingleGhost.vue'
 import ScoreBoard from '@/components/ScoreBoard.vue'
 import GameOver from '@/components/GameOver.vue'
@@ -20,6 +20,9 @@ const props = defineProps<{
 // Game boundaries
 const ghostContainer = ref<HTMLElement | null>(null)
 
+// Slots for ScoreBoard and GameOver
+const slots = useSlots()
+
 // Store
 const windowStore = useWindowStore()
 const gameStore = useGameStore()
@@ -37,6 +40,11 @@ const hit = (ghost: Ghost) => {
     if (gameStore.running && ghost) {
         gameStore.score++
     }
+}
+
+// Close the game over screen
+const closeGameOver = () => {
+    gameStore.gameOver = false
 }
 
 // Game over: emit event
@@ -98,8 +106,27 @@ onBeforeUnmount(() => {
         class="container-position container-transition-all global-font"
         :class="{ 'background-black-50': gameStore.running, 'background-black-20': gameStore.gameOver }"
     >
-        <ScoreBoard />
-        <GameOver />
+        <!-- Showing scoreboard slot or default ScoreBoard component -->
+        <slot
+            v-if="slots.scoreboard"
+            name="scoreboard"
+            :score="gameStore.score"
+            :time="gameStore.gameTime"
+            :running="gameStore.running"
+        />
+        <ScoreBoard v-else />
+
+        <!-- Showing game over slot or default GameOver component -->
+        <slot
+            v-if="slots.gameOver"
+            name="gameOver"
+            :score="gameStore.score"
+            :highScore="gameStore.highScore"
+            :show="gameStore.gameOver"
+            :closeGameOver="closeGameOver"
+        />
+        <GameOver v-else />
+
         <SingleGhost
             v-for="(ghost) in gameStore.ghosts"
             :ref="el => ghost.itemRef = el"
