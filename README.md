@@ -69,10 +69,8 @@ You can tweak game settings using an optional reactive settings object:
 <script setup lang="ts">
 import { ref } from 'vue'
 import BackgroundMusic from '@/assets/my_music.mp3'
-...
 
-// Optional and reactive game settings
-// On change, the game will immediately update
+// Optional settings
 const settings = ref({
     maxGameTime: 30, // Default: 30 seconds
     maxGhosts: 10, // Default: 10 ghosts
@@ -92,8 +90,6 @@ You can listen for various events such as `new-game` and `game-over`:
 
 ```javascript
 <script setup lang="ts">
-...
-
 // Event handler for a new game
 const newGame = () => {
     console.log('New game')
