@@ -7,6 +7,10 @@
     "files": [
         "dist"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/borsTiHD/vue-boo-bash"
+    },
     "main": "./dist/vue-boo-bash.umd.cjs",
     "module": "./dist/vue-boo-bash.js",
     "types": "./dist/types/index.d.ts",
