@@ -5,11 +5,11 @@ import { ref } from 'vue'
 // Optional and reactive game settings
 // On change, the game will immediately update
 const settings = ref({
-    maxGameTime: 60,
-    maxGhosts: 10,
-    spawnDuration: 2000, // specify the spawn rate for new ghosts
-    music: undefined, // specify source for background music
-    debug: true
+    maxGameTime: 60, // specify the game time in seconds - default 30 seconds
+    maxGhosts: 10, // specify the maximum number of ghosts - default 10
+    spawnDuration: 2000 // specify the spawn rate for new ghosts - default 2000ms
+    // music: undefined, // specify source for background music
+    // debug: true
 })
 
 // Event handler for new game
