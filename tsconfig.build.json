@@ -2,6 +2,9 @@
     "include": ["env.d.ts", "src/**/*"],
     "exclude": ["node_modules", "**/*.cy.ts", "**/*.spec.ts", "**/__tests__/**/*", "src/App.vue", "src/main.ts"],
     "compilerOptions": {
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "outDir": "dist/types",
         "paths": {
             "@/*": ["./src/*"]
         }
