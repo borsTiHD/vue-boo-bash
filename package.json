@@ -32,7 +32,7 @@
         "build": "vite build && npm run build:types",
         "preview": "vite preview",
         "test:unit": "vitest",
-        "build:types": "vue-tsc --project tsconfig.build-types.json --declaration --emitDeclarationOnly --outDir dist/types ",
+        "build:types": "vue-tsc --project tsconfig.build.json --declaration --emitDeclarationOnly --outDir dist/types ",
         "type-check": "vue-tsc --build --force",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
     },
