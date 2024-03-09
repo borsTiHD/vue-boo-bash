@@ -1,8 +1,8 @@
-# VueBooBash
+# VueBooBash 👻
 
 VueBooBash is a lightweight and straightforward game that can be seamlessly integrated as an easter egg into your projects. It features a simple ghost animation that spawns and moves around the screen.
 
-## Download
+## Download 🚀
 
 VueBooBash is available on [npm](https://www.npmjs.com/package/vue-boo-bash). You can install it using npm, yarn, or pnpm:
 
@@ -17,7 +17,7 @@ yarn add vue-boo-bash
 pnpm add vue-boo-bash
 ```
 
-## Usage
+## Usage 🎲
 
 To incorporate VueBooBash into your project, import the BooBash component and its accompanying CSS styles:
 
@@ -33,7 +33,7 @@ import 'vue-boo-bash/style.css'
 </template>
 ```
 
-## Customization
+## Customization 🎨
 You can customize the scoreboard and game-over screen by utilizing optional slots:
 
 ```javascript
@@ -62,7 +62,7 @@ You can customize the scoreboard and game-over screen by utilizing optional slot
 </template>
 ```
 
-## Optional Settings
+## Optional Settings ⚙️
 You can tweak game settings using an optional reactive settings object:
 
 ```javascript
@@ -85,7 +85,7 @@ const settings = ref({
 </template>
 ```
 
-## Optional Events
+## Optional Events 🎉
 You can listen for various events such as `new-game` and `game-over`:
 
 ```javascript
@@ -106,7 +106,7 @@ const gameOver = (event: { score: number; highScore: number }) => {
 </template>
 ```
 
-## Credits
+## Credits 🙌
 - Background music: [Super Mario World - Ghost House Orchestral Cover](https://www.youtube.com/watch?v=nGPxmI2Ld9k)  
 - Hit sound: [SMW Kick Sound Effect](http://soundfxcenter.com/download-sound/smw-kick-sound-effect/)  
 - Ghost images created with the assistance of [Microsoft Designer](https://designer.microsoft.com/image-creator)  
