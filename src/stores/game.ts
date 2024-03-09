@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import BackgroundMusic from '@/assets/Ghost_House_Orchestral_Cover.mp3'
+import getHitSound from '@/composables/get-hit-sound'
 import type { Ghost } from '@/types/Ghost'
 import type { GameSettings } from '@/types/GameSettings'
 
@@ -31,6 +32,16 @@ export const useGameStore = defineStore('game', () => {
         music.play()
     })
 
+    // Hit sound
+    const hitSound = getHitSound()
+
+    // Play hit sound
+    function playHitSound() {
+        // Rewind and play
+        hitSound.currentTime = 0
+        hitSound.play()
+    }
+
     // Change settings
     function setSettings(settings: Partial<GameSettings>) {
         maxGameTime.value = settings.maxGameTime || maxGameTime.value
@@ -41,5 +52,5 @@ export const useGameStore = defineStore('game', () => {
     }
 
     return { debug, timer, running, gameOver, score, highScore, maxGameTime,
-        gameTime, ghosts, maxGhosts, spawnDuration, music, setSettings }
+        gameTime, ghosts, maxGhosts, spawnDuration, music, setSettings, playHitSound }
 })
