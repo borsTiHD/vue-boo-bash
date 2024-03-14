@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BooBash from '@/components/BooBash.vue'
+import BackgroundMusic from '@/assets/Ghost_House_Orchestral_Cover.mp3'
 import { ref } from 'vue'
 
 // Optional and reactive game settings
@@ -7,8 +8,8 @@ import { ref } from 'vue'
 const settings = ref({
     maxGameTime: 60, // specify the game time in seconds - default 30 seconds
     maxGhosts: 10, // specify the maximum number of ghosts - default 10
-    spawnDuration: 2000 // specify the spawn rate for new ghosts - default 2000ms
-    // music: undefined, // specify source for background music
+    spawnDuration: 2000, // specify the spawn rate for new ghosts - default 2000ms
+    music: BackgroundMusic // specify source for background music
     // debug: true
 })
 

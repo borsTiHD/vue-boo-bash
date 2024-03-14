@@ -1,6 +1,5 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import BackgroundMusic from '@/assets/Ghost_House_Orchestral_Cover.mp3'
 import getHitSound from '@/composables/get-hit-sound'
 import type { Ghost } from '@/types/Ghost'
 import type { GameSettings } from '@/types/GameSettings'
@@ -24,7 +23,7 @@ export const useGameStore = defineStore('game', () => {
     const spawnDuration = ref(1000 * 2) // in milliseconds
 
     // Background music
-    const music = new Audio(BackgroundMusic)
+    const music = new Audio()
 
     // Rewind music when it ends
     music.addEventListener('ended', () => {

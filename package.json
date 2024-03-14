@@ -1,11 +1,12 @@
 {
     "name": "vue-boo-bash",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "author": "borsTiHD",
     "private": false,
     "type": "module",
     "files": [
-        "dist"
+        "dist",
+        "src/assets/Ghost_House_Orchestral_Cover.mp3"
     ],
     "repository": {
         "type": "git",
@@ -20,7 +21,8 @@
             "require": "./dist/vue-boo-bash.umd.cjs",
             "types": "./dist/types/index.d.ts"
         },
-        "./style.css": "./dist/style.css"
+        "./style.css": "./dist/style.css",
+        "./Ghost_House_Orchestral_Cover.mp3": "./src/assets/Ghost_House_Orchestral_Cover.mp3"
     },
     "keywords": [
         "vue3",
