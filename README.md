@@ -33,6 +33,25 @@ import 'vue-boo-bash/style.css'
 </template>
 ```
 
+## Background music 🎧
+To reduce the size of the game's import, the background music can be imported separately. If you do not take any action, no music will play. The following example demonstrates how to import and utilize the background music.
+
+```javascript
+<script setup lang="ts">
+import { BooBash } from 'vue-boo-bash'
+import 'vue-boo-bash/style.css'
+import BackgroundMusic from 'vue-boo-bash/Ghost_House_Orchestral_Cover.mp3'
+
+const settings = {
+    music: BackgroundMusic // specify source for background music
+}
+</script>
+
+<template>
+    <BooBash :settings="settings" />
+</template>
+```
+
 ## Customization 🎨
 You can customize the scoreboard and game-over screen by utilizing optional slots:
 
