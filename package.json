@@ -17,7 +17,8 @@
     "exports": {
         ".": {
             "import": "./dist/vue-boo-bash.js",
-            "require": "./dist/vue-boo-bash.umd.cjs"
+            "require": "./dist/vue-boo-bash.umd.cjs",
+            "types": "./dist/types/index.d.ts"
         },
         "./style.css": "./dist/style.css"
     },
