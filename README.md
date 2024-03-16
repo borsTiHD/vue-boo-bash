@@ -52,6 +52,22 @@ const settings = {
 </template>
 ```
 
+## Muting Customization 🔇
+You have the option to display a mute button, which mutes both the background music and sound effects. To display the button, you simply need to pass a parameter to the settings object. Alternatively, you can create your own method for muting the game. To do so, you only need to modify a different value of the settings object. Both values are reactive.
+
+```javascript
+<script setup lang="ts">
+const settings = {
+    mute: true, // muting the game - optional, default false
+    showMuteButton: true // optional, default false
+}
+</script>
+
+<template>
+    <BooBash :settings="settings" />
+</template>
+```
+
 ## Customization 🎨
 You can customize the scoreboard and game-over screen by utilizing optional slots:
 
@@ -94,7 +110,9 @@ const settings = ref({
     maxGameTime: 30, // Default: 30 seconds
     maxGhosts: 10, // Default: 10 ghosts
     spawnDuration: 2000, // Default: 2000 ms
-    music: BackgroundMusic, // Background music source
+    music: BackgroundMusic, // Background music source - default: nothing set
+    mute: true, // Muting the game - default: false
+    showMuteButton: true, // Showing default mute button - default: false
     debug: true // Display destination boxes on ghosts (for debugging)
 })
 </script>
