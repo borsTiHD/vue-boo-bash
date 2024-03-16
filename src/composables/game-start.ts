@@ -13,7 +13,7 @@ export default function useGameStart(callback?: () => void) {
     gameStore.running = true
 
     // Play audio
-    gameStore.music.play()
+    gameStore.playMusic()
 
     // Start game timer
     gameStore.timer = setInterval(() => {

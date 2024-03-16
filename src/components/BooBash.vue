@@ -70,6 +70,12 @@ const setSizes = () => {
     })
 }
 
+// Mute button
+const showMuteButton = ref(props.settings?.showMuteButton ?? false)
+const mute = () => {
+    gameStore.mute = !gameStore.mute
+}
+
 // Deep watch for settings
 watch(() => props.settings, (settings) => {
     if (settings) {
@@ -85,6 +91,11 @@ onMounted(() => {
     // Set settings if provided
     if (props.settings) {
         gameStore.setSettings(props.settings)
+
+        // Check settings for 'showMuteButton' and set it
+        if (props.settings.showMuteButton) {
+            showMuteButton.value = props.settings.showMuteButton
+        }
     }
 
     // Reset the game
@@ -95,12 +106,13 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-    gameStore.music.pause() // Pause the music
+    gameStore.stopMusic() // Pause the music
     window.removeEventListener('resize', setSizes)
 })
 </script>
 
 <template>
+    <button v-if="showMuteButton" class="mute-button" @click="mute">{{ gameStore.mute ? 'Unmute 🔊' : 'Mute 🔇' }}</button>
     <div
         ref="ghostContainer"
         class="container-position container-transition-all global-font"
@@ -177,5 +189,36 @@ onBeforeUnmount(() => {
 
 .global-font {
     font-family: 'Roboto', sans-serif;
+}
+
+.mute-button {
+    position: relative !important;
+    border-radius: 0.375rem;
+    background-color: #fff;
+    margin-left: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1a202c;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid #d2d6dc;
+    border-style: inset;
+    border-color: #e2e8f0;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+}
+
+.mute-button:hover {
+    background-color: #ebebeb;
+}
+
+.mute-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(150, 150, 150, 0.5);
 }
 </style>

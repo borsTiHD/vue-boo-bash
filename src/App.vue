@@ -9,7 +9,9 @@ const settings = ref({
     maxGameTime: 60, // specify the game time in seconds - default 30 seconds
     maxGhosts: 10, // specify the maximum number of ghosts - default 10
     spawnDuration: 2000, // specify the spawn rate for new ghosts - default 2000ms
-    music: BackgroundMusic // specify source for background music
+    music: BackgroundMusic, // specify source for background music
+    mute: true, // specify if the game should be muted - default false
+    showMuteButton: true // specify if the mute button should be shown - default false
     // debug: true
 })
 
@@ -23,10 +25,20 @@ const newGame = () => {
 const gameOver = (event: { score: number; highScore: number }) => {
     console.log('Game over', event)
 }
+
+// Mute button
+const mute = () => {
+    settings.value.mute = !settings.value.mute
+}
 </script>
 
 <template>
     <main class="main-background">
+        <!-- Mute button -->
+        <button class="mute-button" @click="mute" >
+            {{ settings.mute ? 'Unmute' : 'Mute' }}
+        </button>
+
         <BooBash :settings="settings" @new-game="newGame" @game-over="gameOver">
             <!-- Scoreboard slot is optional -->
             <!-- <template #scoreboard="{ score, time, running }">
@@ -78,5 +90,31 @@ const gameOver = (event: { score: number; highScore: number }) => {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.mute-button {
+    position: relative;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: #dc2626;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 0.375rem;
+    border: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    z-index: 1000;
+}
+
+.mute-button:hover {
+    background-color: #c53030;
+}
+
+.mute-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.5);
 }
 </style>

@@ -18,7 +18,7 @@ export default function useGameOver() {
     gameStore.ghosts = []
 
     // Stop audio
-    gameStore.music.pause()
+    gameStore.stopMusic()
 
     // Add initial ghost after 3 seconds of game over
     setTimeout(() => {
